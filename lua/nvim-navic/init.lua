@@ -508,11 +508,11 @@ function M.get_location(opts)
 	end
 
 	if local_config.depth_limit ~= 0 and #location > local_config.depth_limit then
-		location = vim.list_slice(location, #location - local_config.depth_limit + 1, #location)
+		location = vim.list_slice(location, 1, local_config.depth_limit)
 		if local_config.highlight then
-			table.insert(location, 1, "%#NavicSeparator#" .. local_config.depth_limit_indicator .. "%*")
+			table.insert(location, #location + 1, "%#NavicSeparator#" .. local_config.depth_limit_indicator .. "%*")
 		else
-			table.insert(location, 1, local_config.depth_limit_indicator)
+			table.insert(location, #location + 1, local_config.depth_limit_indicator)
 		end
 	end
 
